@@ -1,0 +1,352 @@
+/* Hide debugbar when printing a page */
+@media print {
+    div.phpdebugbar {
+        display: none;
+    }
+}
+
+div.phpdebugbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 0;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    background: #fff;
+    z-index: 100000000;
+    font-size: 13px;
+    color: #000;
+    text-align: left;
+    line-height: 1;
+    letter-spacing: normal;
+}
+
+div.phpdebugbar a,
+div.phpdebugbar-openhandler {
+    cursor: pointer;
+}
+
+div.phpdebugbar-drag-capture {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10001;
+    background: none;
+    display: none;
+    cursor: n-resize;
+}
+
+div.phpdebugbar-closed {
+    width: auto;
+}
+
+div.phpdebugbar * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: normal;
+    text-decoration: none;
+    clear: initial;
+    width: auto;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+div.phpdebugbar ol, div.phpdebugbar ul {
+    list-style: none;
+}
+
+div.phpdebugbar table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+div.phpdebugbar code, div.phpdebugbar pre {
+    background: none;
+    font-family: monospace;
+    font-size: 1em;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+a.phpdebugbar-restore-btn {
+    float: left;
+    padding: 5px 8px;
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    border-right: 1px solid #ccc;
+}
+
+div.phpdebugbar-resize-handle {
+    display: none;
+    height: 4px;
+    margin-top: -4px;
+    width: 100%;
+    background: none;
+    border-bottom: 1px solid #ddd;
+    cursor: n-resize;
+}
+
+div.phpdebugbar-closed,
+div.phpdebugbar-minimized {
+    border-top: 1px solid #ddd;
+}
+
+/* -------------------------------------- */
+
+div.phpdebugbar-header .phpdebugbar-tab {
+    padding: 5px 6px;
+}
+
+div.phpdebugbar .phpdebugbar-header select {
+    padding: 1px 0;
+}
+
+div.phpdebugbar-header, a.phpdebugbar-restore-btn {
+    background: #f5f5f5 url(data:image/png;base64,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) no-repeat 5px 3px;
+    background-size: 20px;
+}
+
+div.phpdebugbar-header {
+    background-size: 21px auto;
+    background-position: 9px center;
+    min-height: 30px;
+    line-height: 20px;
+    padding-left: 34px;
+}
+
+div.phpdebugbar-header:before, div.phpdebugbar-header:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+div.phpdebugbar-header:after {
+    clear: both;
+}
+
+div.phpdebugbar-header-left {
+    float: left;
+}
+
+div.phpdebugbar-header-right {
+    float: right;
+}
+
+div.phpdebugbar-header > div > * {
+    padding: 5px 5px;
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+}
+
+div.phpdebugbar-header-left > * {
+    float: left;
+}
+
+div.phpdebugbar-header-right > * {
+    float: right;
+}
+
+div.phpdebugbar-header-right > select {
+    padding: 0;
+}
+
+/* -------------------------------------- */
+
+span.phpdebugbar-indicator,
+a.phpdebugbar-indicator,
+a.phpdebugbar-close-btn {
+    border-right: 1px solid #ddd;
+}
+
+a.phpdebugbar-tab.phpdebugbar-active {
+    background: #ccc;
+    color: #444;
+    background-image: linear-gradient(bottom, rgb(173, 173, 173) 41%, rgb(209, 209, 209) 71%);
+    background-image: -o-linear-gradient(bottom, rgb(173, 173, 173) 41%, rgb(209, 209, 209) 71%);
+    background-image: -moz-linear-gradient(bottom, rgb(173, 173, 173) 41%, rgb(209, 209, 209) 71%);
+    background-image: -webkit-linear-gradient(bottom, rgb(173, 173, 173) 41%, rgb(209, 209, 209) 71%);
+    background-image: -ms-linear-gradient(bottom, rgb(173, 173, 173) 41%, rgb(209, 209, 209) 71%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.41, rgb(173, 173, 173)), color-stop(0.71, rgb(209, 209, 209)));
+}
+
+a.phpdebugbar-tab span.phpdebugbar-badge {
+    display: none;
+    margin-left: 5px;
+    font-size: 11px;
+    line-height: 14px;
+    padding: 0px 6px;
+    background: #ccc;
+    border-radius: 4px;
+    color: #555;
+    font-weight: normal;
+    text-shadow: none;
+    vertical-align: middle;
+}
+
+a.phpdebugbar-tab i {
+    display: none;
+    vertical-align: middle;
+}
+
+a.phpdebugbar-tab span.phpdebugbar-badge.phpdebugbar-important {
+    background: #ed6868;
+    color: white;
+}
+
+a.phpdebugbar-close-btn, a.phpdebugbar-open-btn, a.phpdebugbar-restore-btn, a.phpdebugbar-minimize-btn, a.phpdebugbar-maximize-btn {
+    width: 16px;
+    height: 16px;
+}
+
+a.phpdebugbar-minimize-btn, a.phpdebugbar-maximize-btn {
+    padding-right: 0px !important;
+}
+
+a.phpdebugbar-maximize-btn {
+    display: none
+}
+
+a.phpdebugbar-minimize-btn {
+    display: block
+}
+
+div.phpdebugbar-minimized a.phpdebugbar-maximize-btn {
+    display: block
+}
+
+div.phpdebugbar-minimized a.phpdebugbar-minimize-btn {
+    display: none
+}
+
+a.phpdebugbar-minimize-btn {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAZklEQVR4nM3OMQ4CIRAF0HcFVyvXErl/6VWM7eo11gYSQiBC5f5mksl/meFfCXggznSueGNPs4UDttT5YIUznmnZwvcC7XjhUl5t4Vh8k9GtfqeFf6IeHkI9PIRqPIVyTlhm0QHzBSfMK4g2snfEAAAAAElFTkSuQmCC) no-repeat 6px 6px;
+}
+
+a.phpdebugbar-maximize-btn {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAZklEQVR4nM3OsQmAMBCF4Z+kcA13sUxhq9sZcAHBLVzIIqBNAuG4aNLlwVXvvuOglxhgbEUW2IEbcK3oiVOFJarCEgXg+sMaWoABOL/wJtCadRqeUnkUkIYDMOeFj++Vkna0w73nBRurK28mVdKbAAAAAElFTkSuQmCC) no-repeat 6px 6px;
+}
+
+a.phpdebugbar-close-btn {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuM4zml1AAAADDSURBVDhPxZCxCsIwFEUzuGdwCvQD7BIIcehUXDqVfGM/wsG/iG4ifkzMlRuSPLo4eeFBue8c6Iv6b4wxW557Hs0KnWa3seqDxTiOyVqbhmF4UND4Rofdruyce3rvE6bIRSo9GOI1McbLPM/vVm4l7MAQr0kpHaQsJTDE+6zrepym6SVFdNgR69M+hBTLzWCI10gJvydvBkO8ZlmWayvhJnkzGOI1+fBTCOHWPkT7YNiBId4HizxnCKy+r81uX/otSn0A7dioI/vYX+8AAAAASUVORK5CYII=) no-repeat 9px 6px;
+    color : #555;
+}
+
+a.phpdebugbar-open-btn {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAOCAYAAADJ7fe0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfdCgYULwwNKp3GAAAAGHRFWHRTb2Z0d2FyZQBwYWludC5uZXQgNC4wLjOM5pdQAAAA1UlEQVQ4T2OgKpCUlOQH4vdA/B8Jv4dKEwYgDdLS0v8NDQ3/GxsbwzGIj2YoGEO1oQJkjcRgqDZUAJKwsrJ6/v//fwdiMFQbKgAZkpGR0QR0ajy60wlgRJhBXSGhpqb2CNnZhHBkZORcqBEMDFBX2BsYGGBVjAv39vZaQ41gYIC6Ygs2hbiwr6/vdqA+DqgR4CiW19bWxqoYF87Ly4uFaocAZWXlydgU4sJ2dna3ga4QgGqHAC0trY/YFOPCKSkpDVCtCAA01QaIsaYJHFgCqpVagIEBACGlF2c3r4ViAAAAAElFTkSuQmCC) no-repeat 8px 6px;
+}
+
+.phpdebugbar-indicator {
+    position: relative;
+    cursor: pointer;
+}
+
+.phpdebugbar-indicator span.phpdebugbar-text {
+    margin-left: 5px;
+}
+
+.phpdebugbar-indicator span.phpdebugbar-tooltip {
+    display: none;
+    position: absolute;
+    top: -30px;
+    background: #efefef;
+    opacity: .7;
+    border: 1px solid #ccc;
+    color: #555;
+    font-size: 11px;
+    padding: 2px 3px;
+    z-index: 1000;
+    text-align: center;
+    width: 200%;
+    right: 0;
+}
+
+.phpdebugbar-indicator:hover span.phpdebugbar-tooltip:not(.phpdebugbar-disabled) {
+    display: block;
+}
+
+select.phpdebugbar-datasets-switcher {
+    float: right;
+    display: none;
+    margin: 2px 0 0 7px;
+    max-width: 200px;
+    max-height: 23px;
+    padding: 0;
+}
+
+/* -------------------------------------- */
+
+div.phpdebugbar-body {
+    display: none;
+    position: relative;
+    height: 300px;
+}
+
+/* -------------------------------------- */
+
+div.phpdebugbar-panel {
+    display: none;
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+}
+
+div.phpdebugbar-panel.phpdebugbar-active {
+    display: block;
+}
+
+/* -------------------------------------- */
+
+div.phpdebugbar-mini-design a.phpdebugbar-tab {
+    position: relative;
+    border-right: 1px solid #ddd;
+}
+
+div.phpdebugbar-mini-design a.phpdebugbar-tab span.phpdebugbar-text {
+    display: none;
+}
+
+div.phpdebugbar-mini-design a.phpdebugbar-tab:hover span.phpdebugbar-text {
+    display: block;
+    position: absolute;
+    top: -30px;
+    background: #efefef;
+    opacity: .7;
+    border: 1px solid #ccc;
+    color: #555;
+    font-size: 11px;
+    padding: 2px 3px;
+    z-index: 1000;
+    text-align: center;
+    right: 0;
+}
+
+div.phpdebugbar-mini-design a.phpdebugbar-tab i {
+    display: inline-block;
+}
+
+
+span.phpdebugbar-bg-core {
+    background-color: #FF9800 !important;
+}
+
+span.phpdebugbar-bg-section {
+    background-color: #9E9E9E !important;
+}
+
+span.phpdebugbar-bg-database {
+    background-color: #F44336 !important;
+}
+
+span.phpdebugbar-bg-template {
+    background-color: #00BCD4 !important;
+}
+
+span.phpdebugbar-bg-event {
+    background-color: #8BC34A !important;
+}
